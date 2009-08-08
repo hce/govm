@@ -1,0 +1,3 @@
+A small vm with a custom instruction set... Stack machine + some
+registers for ease and due to the lazyness of the author to do
+everything with the stack ;-P

@@ -1,0 +1,9 @@
+To compile the C module, just invoke
+    make
+
+For this to work, the python headers are required.
+
+To run some bytecode, invoke
+    python rungovm.py $BYTECODE
+
+Questions? <hc@hcesperer.org>
