@@ -1,0 +1,170 @@
+.TH GOVMC 1 "July 2009" "" ""
+.SH NAME
+govmc - Government Compiler
+.SH SYNOPSIS
+.BI "Use the web interface"
+.SH DESCRIPTION
+.B govmc
+is the government compiler.
+.PP
+This is a brief description of govmc, which can be used to generate
+govm bytecode from a modified version of the ADL/ADeLa language.
+.PP
+We supply
+ a) this description;
+ b) the source code for the byte code used on the vulnimages;
+ c) access to the compiler through a webinterface
+.PP
+to all teams that do not have the govhost service running.
+.PP
+During the contest, you are not permitted to share
+ a) this document;
+ b) any information acquired through the usage of this document;
+ c) the password for the compiler webinterface
+.PP
+with teams that have
+the govhost service running.
+.SH ACCESS TO THE COMPILER
+From
+.B within
+the VPN:
+ http://10.0.14.23/
+.PP
+Password to access the web interface is
+.B b3hUiFE25dayk
+.PP
+We reserve the right to store all submitted source code and to publish
+it in modified and/or unmodified form after the contest. You may add
+your name / team's name as comments to the source file if you like.
+.SH SHORT LANGUAGE DESCRIPTION
+Use indentation as in python. Only the 'tab' character may be used for
+indentation.
+.PP
+Those of you who played at da-op3n 2008 will be vaguely familiar with
+the syntax; however, there are some important differences.
+.PP
+The main function must be the
+.B first
+function declared; main does not
+take any arguments.
+.PP
+.B FUNCTION CALLS:
+Functions and syscalls have the same invocation syntax. The following
+syscalls exist:
+.TP
+.B putc(c:uint)
+Where c is the character to output; Write a character by calling the
+supplied python callback function
+.TP
+.B getc():uint
+Read a character by calling a python function
+which must return the character.
+.TP
+.B open(fn:uint, mode:uint):uint
+Open a file
+.TP
+.B fputc(fh:uint, char:uint)
+Write a character to a file
+.TP
+.B fgetc(fh:uint):uint
+Read a characted from a file
+.TP
+.B close(fh:uint)
+Close a file
+.TP
+.B pokeb(pos:uint, byte:uint)
+Store a byte at
+.B pos
+in the data segment
+.TP
+.B peekb(pos:uint):uint
+Return the byte stored at
+.B pos
+in the data segment
+.TP
+.B halt()
+Finish execution
+.PP
+Only getc, read, peekb and open return a value. You *MUST* assign that value
+to a variable, or you'll fill up the stack.
+.PP
+If a user-defined function returns a value, that value must be
+assigned to a variable by the caller. Only 16 bit unsigned integers
+may be returned. You must pass the correct number of parameters to
+functions, or you'll get into trouble. (The compiler does not check
+that for you)
+.SH VARIABLES
+Local variables must be declared; declaration goes before code. Global
+variables do exist, but the syntax to define them is undefined.
+.PP
+.B
+DECLARATION SYNTAX: [1]
+    local $(VARNAME):$(TYPE)
+.PP
+The two valid types are:
+.TP
+.B uint
+16 bit unsigned integer
+.TP
+.B byte[SIZE]
+Array. A 'byte' is 16 bit long. Yes, that's
+counter-intuitive.
+.PP
+.B CONDITIONAL STATEMENTS:
+    while $(CONDITION):
+        statement()
+        statement2()
+.PP
+    if $(CONDITION):
+        statement()
+.PP
+Note that you may not use the elif of else keywords. They are there,
+but they do not currently generate valid bytecode but instead mess up
+your code. [2]
+.PP
+.B OPERATORS:
+    + - / * & | < > <= >= << >> == ()
+.PP
+Evaluation is left to right; no precedence is currently implemented.
+Use brackets to specify the evaluation order.
+.PP
+.B ACCESSING ARRAY ELEMENTS:
+    array[$(STATEMENT)]
+.PP
+No array bounds checking is done ;-) All arrays reside on the stack.
+Arrays may not be passed as function parameters.
+.PP
+.B STRING CONSTANTS:
+.PP
+String constants are stored in the data segment. When used, they
+"return" the starting address of the String. Thus, the following two
+code excerpts are identical:
+    puts("Hi")
+    puts("Ho")
+.PP
+- and -
+.PP
+    "Hi"
+    "Ho"
+    puts(0)
+    puts(3)
+.PP
+Except that the latter example pushes two variables on the stack that
+are never popped.
+.SH MISCELLANEOUS
+.PP
+Please do not ask questions about the language in the IRC channel.
+Send a PRIVMSG to hcesperer instead.
+.SH IMPLEMENTATION DETAILS
+.PP
+You don't wanna know ;-)
+.SH AUTHOR
+.PP
+Hans-Christian Esperer <hc@hcesperer.org>
+.SH UNIMPORTANT FACTS
+.PP
+1) The local keyword is inspired by UnrealScript; the var:type syntax
+is taken from a. flash
+.PP
+2) The language was just modified to generate govm bytecode.
+(s/modified/hacked/)
