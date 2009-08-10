@@ -182,7 +182,6 @@ static boolean op_load_instant(void)
 	fprintf(stderr, "govm: DEBUG: LI: %d\n", val);
 #endif
 
-    fprintf(stderr, "LI %d\n", val);
 	if (!push(val)) {
 		fprintf(stderr, "govm: stack overflow!");
 		return FALSE;
@@ -209,11 +208,11 @@ static int syscall_gets(struct PYGOVM_callinfo* ci)
 }
 
 
-static int py_putc(struct PYGOVM_callinfo *ci, char c)
+static int py_putc(struct PYGOVM_callinfo *ci, unsigned char c)
 {
     PyObject* args;
     PyObject* res;
-    char s[2] = " ";
+    unsigned char s[2] = " ";
 
     *s = c;
     args = Py_BuildValue("(s#)", s, 1);
@@ -360,7 +359,6 @@ static int op_syscall(struct PYGOVM_callinfo* ci, byte syscall)
 	byte b1;
     int  i1;
 
-    fprintf(stderr, "SYSCALL %d\n", syscall);
 	switch (syscall) {
 	case SYSCALL_HLT:
 		return -EOPSYSTERMINATE;
