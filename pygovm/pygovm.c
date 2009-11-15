@@ -642,9 +642,21 @@ static int vm_run(struct PYGOVM_callinfo* ci)
 			ss[sp - 2] = tmp;
 			break;
 
+		case INSTR_XOR:
+#ifdef _debug
+			fprintf(stderr, "govm: debug: xor\n");
+#endif
+			if (sp <= 1) {
+				fprintf(stderr, "govm: stack underflow\n");
+				goto error_bail_out;
+			}
+			sp -= 2;
+			push(ss[sp] ^ ss[sp + 1]);
+			break;
+
 		case INSTR_ADD:
-#ifdef _DEBUG
-			fprintf(stderr, "govm: DEBUG: ADD\n");
+#ifdef _debug
+			fprintf(stderr, "govm: debug: add\n");
 #endif
 			if (sp <= 1) {
 				fprintf(stderr, "govm: stack underflow\n");

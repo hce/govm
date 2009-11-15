@@ -1194,6 +1194,9 @@ public class ADELAParseTree implements Externalizable {
 			case '<':
 				gw.writeOpcode(Opcode.LT);
 				break;
+			case '^':
+				gw.writeOpcode(Opcode.XOR);
+				break;
 			case '>':
 				gw.writeOpcode(Opcode.GT);
 				break;

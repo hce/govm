@@ -6,7 +6,7 @@ public enum Opcode {
 			17), MOVC(18), MOVD(19), MOVE(20), MOVF(21), AMOV(22), BMOV(23), CMOV(
 			24), DMOV(25), EMOV(26), FMOV(27), CALL(28), LWS(29), SWS(30), SUB(
 			31), NOT(32), EQU(33), LOE(34), GOE(35), LT(36), GT(37), AND(38), OR(
-			39), SHL(40), SHR(41), MUL(42), NOP(43);
+			39), SHL(40), SHR(41), MUL(42), NOP(43), XOR(44);
 
 	private byte firstNibble;
 	private byte secondNibble;

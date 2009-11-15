@@ -46,6 +46,7 @@ enum {
     INSTR_SHR = 41,
     INSTR_MUL = 42,
     INSTR_NOP = 43,
+    INSTR_XOR = 44,
 } e_INSTR;
 
 enum {
