@@ -25,6 +25,22 @@ module. It supports three syscalls: getc, putc and halt. getc and putc
 are redirected to python functions to allow for easy integration.
 
 
+COMPILING
+======================================================================
+You need:
+
+For compiling the compiler:
+    sun java 1.5 sdk or later.
+
+For compiling the VM:
+    python2.5, and python2.5 headers
+
+Simply issue 'make' to make both. The compiler will be stored in the
+project's root dir as govmc.jar. The VM can be invoked by doing
+    cd pygovm && python rungovm.py $(BYTECODE)
+
+Some examples can be found in the examples/ directory.
+
 USAGE
 ======================================================================
 The compiler is invoked like this:
