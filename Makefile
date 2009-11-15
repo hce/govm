@@ -1,4 +1,4 @@
-all: compiler vm
+all: compiler vm examples
 	true
 
 compiler:
@@ -6,3 +6,6 @@ compiler:
 
 vm:
 	cd pygovm && make
+
+examples: govmc.jar
+	cd examples && make
