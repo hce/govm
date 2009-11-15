@@ -1,3 +1,32 @@
+What is govm?
+======================================================================
+govm is an experimental/educational VM + compiler.
+
+I've written a small bytecode interpreter along with a custom bytecode
+for CIPHER 5 [1], originally based on an idea by Sascha Müller, who
+also wrote a little assembler for his vm, which I extended.
+
+When I tried to write bytecode with his assembler, I had to repeat the
+same instruction sequences over and over again. Because I hate to
+repeat myself more often than never, I decided I need to write a
+compiler.
+
+The idea of using the VM in a Capture the Flag contest was to force
+teams to write their own shellcode, to write their own buffer overflow
+protection, and to write their own disassembler. Thus, teams who
+cannot afford a commercial disassembler (or who are unwilling to buy
+one) are not at a disadvantage.
+
+The VM supports execution of arbitrary bytecode on its stack, provided
+the originally executed bytecode is vulnerable to stack overflows.
+
+The VM is written in C; the current version is implemented as a python
+module. It supports three syscalls: getc, putc and halt. getc and putc
+are redirected to python functions to allow for easy integration.
+
+
+USAGE
+======================================================================
 The compiler is invoked like this:
     java -jar govmc.jar $INPUT $OUTPUT
 
@@ -17,5 +46,14 @@ vm (govm). Why? Because it was originally written for CIPHER 5, and
 CIPHER 5's theme was "corrupt government". And a corrupt government
 needs its own vm.
 
-Ah yes, the whole thing was inspired by the "svm gdi3-praktikumsaufgabe" by
-Sascha Mueller of TU Darmstadt.
+
+DOCUMENTATION
+======================================================================
+The original man page for the compiler is included. It can be a little
+confusing because the manpage is written with the assumption that the
+compiler is used over a web interface.
+
+QUESTIONS
+======================================================================
+hc-govm@hcesperer.org
+
