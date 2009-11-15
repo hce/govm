@@ -1,0 +1,18 @@
+# Output "Hello World!"
+
+# Entry point
+def main():
+	puts("Hello World")
+	halt()
+
+# String output routine
+def puts(string:uint):
+	local character:uint
+
+    # string "points" to the beginning of the string in the data segment
+	character = peekb(string)
+	while character:
+		putc(character)
+		string = string + 1
+		character = peekb(string)
+
