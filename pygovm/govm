@@ -1,0 +1,4 @@
+#!/bin/sh
+SCRIPT=$(readlink -f "$0")
+SCRIPTPATH=$(dirname "$SCRIPT")
+exec /path/to/python/bin/python $SCRIPTPATH/../lib/rungovm.py $1 $2 $3 $4 $5 $6 $7
