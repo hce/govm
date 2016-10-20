@@ -1,6 +1,6 @@
 let
   pkgs = import <nixpkgs> { };
-  version = "0.1.0";
+  version = "0.1.1";
 in
 rec {
   compiler = pkgs.stdenv.mkDerivation (rec {
