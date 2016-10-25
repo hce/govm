@@ -1,15 +1,16 @@
 let
   pkgs = import <nixpkgs> { };
   version = "0.1.1";
+  tehjdk = pkgs.openjdk;
 in
 rec {
   compiler = pkgs.stdenv.mkDerivation (rec {
     name = "govmc";
-    buildInputs = [ pkgs.jdk pkgs.python ];
+    buildInputs = [ tehjdk pkgs.python ];
     src = ./.;
     configurePhase = ''
       substituteInPlace govmc \
-        --replace "/path/to/jdk" "${pkgs.jdk.home}"
+        --replace "/path/to/jdk" "${tehjdk.home}"
     '';
   } );
 
